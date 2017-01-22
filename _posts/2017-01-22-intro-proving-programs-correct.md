@@ -1,4 +1,7 @@
 ---
+layout: post
+title: Blogging Like a Hacker
+---
 # What it do? 
 ## Formal Reasoning about Program Behavior. An Introduction.
 Michael Gilson *January, 2017*
