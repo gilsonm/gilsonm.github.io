@@ -1,12 +1,18 @@
 ---
 layout: post
-title: Blogging Like a Hacker
+title: Formal Reasoning about Program Behavior. An Introduction.
 ---
+
 # What it do? 
+
 ## Formal Reasoning about Program Behavior. An Introduction.
+
 Michael Gilson *January, 2017*
+
 ---
+
 ## 1. Motivations
+
 Say we wanted to return the last item in a **LinkedList**. Easy right?
 
 First, let’s be clear on what is a **LinkedList**.  
