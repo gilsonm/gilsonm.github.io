@@ -80,7 +80,7 @@ Software, however, is fundamentally different. It runs on man-made devices. We k
 
 Mathematical Logic is a tool for pushing truth around. Given some statements we know to be true, we use rules of deduction to find the truth-value of other statements. Such a sequence of deductions is called a proof. Statements for which proofs exist are called theorems. **Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
 
-Here's the basic idea. Programs are built up from commands. To reason about programs we first need to reason about commands. We'd like to say that executing command `C` has some consequence, call it `Q`. For example if `C = x++`, we may claim that `C` has the effect of `adding 1 to the current value of x`, whih is the consequence, `Q`. Although, this is only true under certain conditions. What if `x` is not a numeric type, or in general does not have the autoincrement operator defined? To cover the cases we are interested in, it's necessary to state some assertions of what is true before the command executes. So that, all together, we can conclude
+Here's the basic idea. Programs are built up from commands. To reason about programs we first need to reason about commands. We'd like to say that executing command `C` has some consequence, call it `Q`. For example if `C = x++`, we may claim that `C` has the effect of `adding 1 to the current value of x`. This effect is the consequence `Q`. However, the current example is only true under certain conditions. What if `x` is not a numeric type, or in general does not have the autoincrement operator defined? To cover the cases we are interested in, it's necessary to state some assertions of what is true before the command executes. So that, all together, we can conclude
 
 > If the preconditions are met, executing the command establishes the postconditions
 
@@ -92,11 +92,13 @@ C
 {Q}
 ```
 
-The set of claims `{P}` is called the **preconditions** and the set of claims `{Q}` is called the **postconditions**. Here's an example in which we reason about incrementing a number stored in a variable. In plain english
+Such a construct is called a **Hoare Triple** or **Floyd-Hoare Triple**. From this building block we can establish the truth of, not just isolated commands, but entire programs! Hereafter, the set of claims `{P}` will be called the **preconditions**, and the set of claims `{Q}` the **postconditions**.
+
+Let's take a look at a concrete example involving an addition operation. In plain english, we may state **the Triple** as 
 
 > When variable x equals 1 and y equals 2, adding x to y and assigning the result to z results in z equal to 3
 
-Which looks like `{x=1, y=2} z = x + y {z = 3}` or
+Formally, it can be written as `{x=1, y=2} z = x + y {z = 3}` or
 
 ```
 {x=1, y=2}
@@ -104,9 +106,7 @@ z = x + y
 {z=3}
 ```
 
-**Note**: A simple decision tree can be useful for analyzing Hoare Triples that you and others write. First, is the Hoare Triple a well-formed formula? If not, then it's not true. If it is a well-formed formula, then we can start the business of establishing whether or not the Triple is provable or "True"
-
-Fantastic! 
+> Note: Just writing (or reading) an Hoare Triple does not mean it is true! First, the Hoare Triple must be syntactically correct to even posess a truth value. If it is not a well-formed formula, it cannot be evaluated! If it is well-formed, however, it is either `true` or it is `false`. Which of these values holds for the Hoare Triple is established by deduction (proof).
 
 We can now model our knowledge about the program in a **formal language**, and use a **deductive calculus** to prove theorems about its behavior.
 
