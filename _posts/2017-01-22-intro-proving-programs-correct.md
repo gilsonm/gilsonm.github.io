@@ -106,7 +106,13 @@ z = x + y
 {z=3}
 ```
 
-> Note: Just writing (or reading) an Hoare Triple does not mean it is true! First, the Hoare Triple must be syntactically correct to even posess a truth value. If it is not a well-formed formula, it cannot be evaluated! If it is well-formed, however, it is either `true` or it is `false`. Which of these values holds for the Hoare Triple is established by deduction (proof).
+### A Note on Syntax and Semantics
+
+Just writing (or reading) an Hoare Triple does not mean it is true! First, the Hoare Triple must be syntactically correct to even posess a truth value. If it is not a well-formed formula, it cannot be evaluated! If it is well-formed, however, it is either `true` or it is `false`. Which of these values holds for the Hoare Triple is established by deduction (proof).
+
+Another thing to note is that there is a mixture of languages here. The language of Hoare Logic with statements in `{}`--this is the language you are reasoning *with*--and the targe language, which you are reasoning *about*. Typically, I've seen Hoare Logic expressed as a mixture of the target language and the language of first order logic. Ultimately both languages need formal definitions.
+
+In addition to a formal definition of the language of Hoare Logic, there needs to be a formal definition of the deductive calculus of Hoare Logic. The formulas and rules of the deductive calculus allow us to establish the truth-values of our Hoare Triples.
 
 We can now model our knowledge about the program in a **formal language**, and use a **deductive calculus** to prove theorems about its behavior.
 
@@ -149,6 +155,8 @@ z = x + y
 ```
 
 We can verify this triple via the deductive calculus, as long as we correctly specify our preconditions and post conditions. 
+
+As a caveat, if we ran the code on any real-world system we would certainly run into overflow scenarios that invalidate the postcondition since memory is bounded. In such cases, it would be useful to model the language or runtime specific constraints in the Hoare logic such that the reasoning translated to the target system(s).
 
 ### Establishing correctness of the LinkedList traversal...
 
