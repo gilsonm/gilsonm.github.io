@@ -78,11 +78,11 @@ Software, however, is fundamentally different. It runs on man-made devices. We k
 
 ### Floyd-Hoare Triples
 
-Mathematical Logic allows us to express claims about algebraic systems and perform deductions from sets of claims, axioms, and logical truths. **Can this be applied to programs?** The answer is yes, but with some twists. Thanks to Robert Floyd and Tony Hoare for coming up with a formal system.
+Mathematical Logic is a tool for pushing truth around. Given some statements we know to be true, we use rules of deduction to find the truth-value of other statements. Such a sequence of deductions is called a proof. Statements for which proofs exist are called theorems. **Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
 
-Here's the basic idea. Programs are built up from commands, and we'd like to make claims of the form
+Here's the basic idea. Programs are built up from commands. To reason about programs we first need to reason about commands. We'd like to say that executing command `C` has some consequence, call it `Q`. For example if `C = x++`, we may claim that `C` has the effect of `adding 1 to the current value of x`, whih is the consequence, `Q`. Although, this is only true under certain conditions. What if `x` is not a numeric type, or in general does not have the autoincrement operator defined? To cover the cases we are interested in, it's necessary to state some assertions of what is true before the command executes. So that, all together, we can conclude
 
-> When the precondition is met, executing the command establishes the postcondition
+> If the preconditions are met, executing the command establishes the postconditions
 
 This is usually written as `{P} C {Q}` or top-down as 
 
