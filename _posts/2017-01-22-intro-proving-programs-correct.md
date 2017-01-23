@@ -15,11 +15,11 @@ Michael Gilson *January, 2017*
 
 Say we wanted to return the last item in a **LinkedList**. Easy right?
 
-First, let’s be clear on what is a **LinkedList**.  
+Let's start with the definition of **LinkedList**. From *(Sedgewick and Wayne)*
 
-> A *linked list* is a recursive data structure that is either empty (*null*) or a reference to a *node* having a generic item and a reference to a linked list.  From *(Sedgewick and Wayne)*
+> A *linked list* is a recursive data structure that is either empty (*null*) or a reference to a *node* having a generic item and a reference to a linked list.
 
-From that definition, let's suppose you see this implementation in a code review
+Now let's suppose you see this implementation of the definition in a code review
 
 ```java
 class LinkedList<T>
@@ -30,7 +30,7 @@ class LinkedList<T>
 	Node FIRST
 ```
 
-And to get the last element, is a function like the following
+And to get the last element, a function like the following
 
 ```java
 T last()
