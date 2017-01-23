@@ -77,19 +77,10 @@ Surely we can do better.. in the exact sciences, we make claims about the natura
 Software, however, is fundamentally different. It runs on man-made devices. We know the inner workings of the host system to exquisite detail. Really, the software situation smells more like mathematics than basic science. So how are claims verified in mathematics? Mathematical Logic! Is there a correlate for programs?
 
 ### Floyd-Hoare Triples
----
 
-What tools have been created to reason about our programs in a formal way?
-
-Well, there's already Mathematical Logic that allows us to express claims about algebraic systems and perform deductions from sets of claims, axioms, and logical truths. **Can this be applied to programs?**
-
-The answer is yes, but with some twists. Thanks to Robert Floyd and Tony Hoare for coming up with a formal system.
+Mathematical Logic allows us to express claims about algebraic systems and perform deductions from sets of claims, axioms, and logical truths. **Can this be applied to programs?** The answer is yes, but with some twists. Thanks to Robert Floyd and Tony Hoare for coming up with a formal system.
 
 Here's the basic idea. Programs are built up from commands, and we'd like to make claims of the form
-
-> Given that the program is in state, P, and I execute command C, I then expect the program to be in state Q
-
-or in the words of Wikipedia
 
 > When the precondition is met, executing the command establishes the postcondition
 
@@ -101,9 +92,7 @@ C
 {Q}
 ```
 
-The set of claims `{P}` is called the **preconditions** and the set of claims `{Q}` is called the **postconditions**.
-
-Here's an example in which we reason about incrementing a number stored in a variable. In plain english
+The set of claims `{P}` is called the **preconditions** and the set of claims `{Q}` is called the **postconditions**. Here's an example in which we reason about incrementing a number stored in a variable. In plain english
 
 > When variable x equals 1 and y equals 2, adding x to y and assigning the result to z results in z equal to 3
 
@@ -115,8 +104,6 @@ z = x + y
 {z=3}
 ```
 
-> Note: Actually demonstrate that the triple is valid? Or use a simpler example, possibly from Aspnes
-
 **Note**: A simple decision tree can be useful for analyzing Hoare Triples that you and others write. First, is the Hoare Triple a well-formed formula? If not, then it's not true. If it is a well-formed formula, then we can start the business of establishing whether or not the Triple is provable or "True"
 
 Fantastic! 
@@ -124,7 +111,6 @@ Fantastic!
 We can now model our knowledge about the program in a **formal language**, and use a **deductive calculus** to prove theorems about its behavior.
 
 ### Relationship to Testing
----
 
 There is a connection between Hoare Logic and modern software testing.  Given some test like 
 
@@ -158,25 +144,26 @@ If we’re testing a function that takes two ints as input, we really want to es
 
 ```java
 {int x, int y}
-z = f.bar(x,y)
+z = x + y
 {z = x + y}
 ```
 
 We can verify this triple via the deductive calculus, as long as we correctly specify our preconditions and post conditions. 
 
-### Back to the thing
+### Establishing correctness of the LinkedList traversal...
 
 Now back to the LinkedList... We were interested in demonstrating that the following algorithm correctly returns the last element from a **LinkedList**:
 
 ```java
-Object targetItem
-Node node = FIRST
+T last()
+	if FIRST == null
+		return null
 
-while node.next != null
-	if node.item.equals(targetItem)
-		return true
-	node = node.next
-return false	
+	node = FIRST
+
+	while node.next != null
+		node = node.next
+	return node.item
 ```
 
 One thing to note here is that we have more than a single command in the body of the **Hoare Triple**, indeed we have a while loop. This is common and doesn't change how we interpret the **Triple**. We could augment the definition from wikipedia by pluralizing `command` to be
@@ -288,25 +275,6 @@ One trivial claim that certainly is true is `node is either the last node or is 
 
 Well, on the first iteration of the loop, it's the FIRST node. On the second iteration, it's the second node. And so forth. So on the kth iteration, it's the kth node in the list.
 
-```java
-// Iterations of the loop
-
-Command						Iteration
--------						---------
-while node.next != null		0
-node = node.next
-while node.next != null		1
-node = node.next
-while node.next != null		2
-node = node.next
-...
-while node.next != null		k
-node = node.next
-...
-while node.next != null		n
-node = node.next
-```
-
 ## Proof of traversal
 
 Somehow demonstrate that we're traversing the list. Using pointers rather than array indexing. May have to establish some pre-condition claims about lists, such that the repeated calls to .next visit each node.
@@ -359,29 +327,8 @@ void addNode(Node n) {
 // Allow duplicate Items, not Nodes
 ```
 
-## Termination
+## Proving a LinkedList Traversal Correct
 
-```
-L1.		Every list is of bounded length
-P(k). 	node = kth node in list
-
-L1 -> L2. There exists an integer, n, that is the length of the list
-
-Consider iteration n of the loop.
-P(n) holds.
-P(n) -> !C (*)
-!C -> termination
-
-* Detailed proof of that step:
-
-L3. In a list of length n, the nth node is the last node
-^ have to prove by induction. Base P(1). P(k)->P(k+1) using addNode code.
-P(n): node = nth node in list
-List of length n -> node is last.
-Last node iff no next node. No next node iff node.next == null.
-```
-
-# Proving a LinkedList Traversal Correct
 > Use a different color for the Hoare blocks  
 
 Say we want to return the last item from a LinkedList. How would we write that program, and importantly, how would we verify that the program was correct?
