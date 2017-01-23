@@ -166,39 +166,35 @@ T last()
 	return node.item
 ```
 
-One thing to note here is that we have more than a single command in the body of the **Hoare Triple**, indeed we have a while loop. This is common and doesn't change how we interpret the **Triple**. We could augment the definition from wikipedia by pluralizing `command` to be
+Let's take a first stab at re-writing as an **Hoare Triple**. We'll drop the function signature and first focus on the while loop. There will be a bit of slop as we go over concepts but will tighten up our arguments significantly by the end of the post. 
 
->When the precondition is met, executing the **commands** establishes the postcondition
-
-So how do we tackle this loop?
-
-Let's take a first stab at re-writing as an Hoare Triple
+Starting from the general schema for a triple:
 
 ```java
-// Starting from the general schema for a triple:
-
 {P}
 C
 {Q}
+```
 
-// Substituting in our program fragment:
+We substitute in our program fragment:
 
+```java
 {P}
 while node.next != null
 	node = node.next
 {Q}
+```
 
-// And our preconditions and requirements (post conditions):
+And add our preconditions and requirements (postconditions):
 
+```java
 {node = FIRST}
 while node.next != null
 	node = node.next
 {node = LAST}
 ```
 
-Now let's break apart the loop and figure out how to reason about it.
-
-There's at least two important parts
+Now let's break apart the loop and figure out how to reason about it. There's at least two important parts
 
 - The condition
 - The loop body
@@ -212,7 +208,7 @@ while (C)
 {Q}
 ```
 
-We desire that given preconditions, `{P}`, the while loop with condition `C` and body of statements `S` guarantees our goal, `{Q}`.
+Where `C` is the condition of the `while` loop, and `S` is the body (statements). We desire that given preconditions, `{P}`, the while loop with condition `C` and body of statements `S` guarantees our goal, `{Q}`.
 
 A time-tested method for situations like the present is to use **an Invariant**. This is some property (a predicate), let's call it `{i}` that holds true at the beginning and end of each pass through the body, and together with the termination criteria, will imply `{Q}`. E.g. with a schema like
 
