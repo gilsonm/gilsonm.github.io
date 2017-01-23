@@ -282,13 +282,15 @@ l.first = n
 
 We will never have termination given the current algorithm! Also it seems that we need to put constraints on what types of inputs we receive. These constraints can be stated as preconditions, and later be backed up by implementations.
 
-Will work towards these invariants
-* `I` = `l[k] = node`
+How do we handle all of this? We could start by making all sorts of claims about the input data, and then work forward from those claims towards the postcondition, or goal, `Last(node)`. This is generally not a good idea, even though it is intuitive! A better approach is to start from the goal, and work backwards to figure out which preconditions are logical necessities for the post condition.
 
-With this goal
+So with this goal
 * `Q` = `Last(node)`
+We will work towards these invariants
+* `I` = `l[k] = node`
+And ultimately define what we need in our preconditions. 
 
-And we’ll have to figure out our preconditions. So this is our current schema
+So this is our current schema
 
 ```java
 {P}
