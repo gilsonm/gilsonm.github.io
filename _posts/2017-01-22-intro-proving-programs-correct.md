@@ -271,70 +271,16 @@ One trivial claim that certainly is true is `node is either the last node or is 
 
 Well, on the first iteration of the loop, it's the FIRST node. On the second iteration, it's the second node. And so forth. So on the kth iteration, it's the kth node in the list.
 
-## Proof of traversal
-
-Somehow demonstrate that we're traversing the list. Using pointers rather than array indexing. May have to establish some pre-condition claims about lists, such that the repeated calls to .next visit each node.
-
-E.g. How do we know we didn't skip a node? *(Show proof)*
-
-E.g. Prove that kth iteration is kth node in list
-
-Add precondition that FIRST is not null, and is of type Node.
-
-Every instance of Node, .next is either
-
-- null
-- a Node instance or sublcass instance
-
-**But what about cases like**
+Great! We're home free. But what about cases like..
 
 ```java
-Node n = new Node();
-n.next = n;
+LinkedList l = new LinkedList()
+Node n = new Node()
+n.next = n
+l.first = n
 ```
 
-We will never have termination given the current algorithm!
-
-So now it seems useful to introduce a pre-condition like one of
-
-1. We're given a list created by a specific program (e.g. one that has "add node" which ensures [provably] only linear linked-lists)
-2. We just state it directly as a pre-condition. Like {No cycles in list; at least one null in list} etc.
-
-For 1. We could do something like
-
-```java
-void addNode(T item) {
-	Node n = new Node();
-	n.item = item;
-
-	// but now we have to add to the end of the damned list!
-	LAST.next = n
-	LAST = n
-}
-
-// we do this instead of
-
-void addNode(Node n) {
-...
-}
-
-// Since n may already be in list.
-
-// Allow duplicate Items, not Nodes
-```
-
-## Proving a LinkedList Traversal Correct
-
-> Use a different color for the Hoare blocks  
-
-Say we want to return the last item from a LinkedList. How would we write that program, and importantly, how would we verify that the program was correct?
-
-```java
-node = FIRST
-while node.next != null
-	node = node.next
-return node.item
-```
+We will never have termination given the current algorithm! Also it seems that we need to put constraints on what types of inputs we receive. These constraints can be stated as preconditions, and later be backed up by implementations.
 
 Will work towards these invariants
 * `I` = `l[k] = node`
@@ -439,9 +385,9 @@ We’ve established our invariant `I1`, now let’s see how close we are to prov
 
 ```
 Last(node,l) iff 
-Q1. node in l
-Q2. node != null
-Q3. node.next == null
+	Q1. node in l
+	Q2. node != null
+	Q3. node.next == null
 ```
 
 So we have to prove `{Q1, Q2, Q3}`. We can prove `Q1` by adding a similar precondition, say `P4`, like `l[k] = node ^ node.next != null —> node.next in l`. To prove `Q2`, this is actually an invariant of the loop so long as initially `node != null`. Why? `node` is only ever assigned the value `node.next`, which is guaranteed to `!= null` because of `C`.  We may require that `FIRST != null` to establish that. Finally, `Q3` is equivalent to `!C`. 
@@ -474,7 +420,7 @@ while C
 	node = node.next
 	{ g = n - k }
 	k = k + 1
-  g = n - k
+ 	g = n - k
 	{T1} = { g = n - (k + 1) = n - k - 1 = (n - k) - 1 = g - 1 }
 { g = 0 }
 ```
@@ -488,9 +434,9 @@ Putting together the **partial correctness** proof and the **proof of terminatio
 	L0. l[k] = node iff node is kth node in LinkedList, l
 	L1. l[1] = FIRST
 	L2. l[k] = node and node.next != null imply l[k+1] = node.next
-  L3. l[k] = node and node.next != null imply l[k+1] in l
+	L3. l[k] = node and node.next != null imply l[k+1] in l
 	L4. len(l) = n for some n > 0
-  L5. len(l) = n implies l[n].next = null
+	L5. len(l) = n implies l[n].next = null
 }
 
 {P} = {FIRST != null, FIRST in l, len(l) = n > 0}
@@ -502,7 +448,7 @@ while node.next != null
 	{I ^ C}
 	node = node.next
 	k = k + 1
-  g = n - k
+	g = n - k
 	{I}
 {I ^ L1..L5 ^ !C} -> {Q} = {Last(node,l)}
 ```
