@@ -19,7 +19,7 @@ First, let’s be clear on what is a **LinkedList**.
 
 > A *linked list* is a recursive data structure that is either empty (*null*) or a reference to a *node* having a generic item and a reference to a linked list.  From *(Sedgewick and Wayne)*
 
-Given a *(poorly designed)* **Node** and **LinkedList** class from this def like
+From that definition, let's suppose you see this implementation in a code review
 
 ```java
 class LinkedList<T>
@@ -30,32 +30,38 @@ class LinkedList<T>
 	Node FIRST
 ```
 
-We might write a pseudo-code program like the following to implement a `last()` method
+And to get the last element, is a function like the following
 
 ```java
-node = FIRST
-while node.next != null
-	node = node.next
-return node.item
+T last()
+	if FIRST == null
+		return null
+
+	node = FIRST
+
+	while node.next != null
+		node = node.next
+	return node.item
 ```
 
-Easy enough. Looks right. But *is it*?  More specifically, under what conditions is it correct? Is there some way to **formally prove** that the code behaves as required? We could trace the function by hand on several small inputs to convince ourselves. We could even write tests over a large number of inputs, for which we knew the correct answer, and thereby demonstrate "some correctness." Thinking to ourselves, 
+Looks right. But *is it*?  More specifically, under what conditions is it correct? Is there some way to **formally prove** that the code behaves as required? We could trace the function by hand on several small inputs to convince ourselves. We could even write tests over a large number of inputs, for which we knew the correct answer, and thereby demonstrate "some correctness." Thinking to ourselves, 
 
 > ”Well if it works on all these inputs that I tried, how could it possibly fail on the ones I didn't try -- they're basically the same!"
 
-As we'll see later, your tests are actually Hoare Triples with extremely strong (specific) pre-conditions. (However, what we really want are extremely weak pre-conditions, to the point that they cover all possible inputs)
+As we'll see later, tests are actually **Hoare Triples** with extremely strong (specific) pre-conditions. They verify program behavior on some number of specific inputs. But unless every possible input is tested, we cannot claim that the program is correct.
 
-### Other motivations
+Under what circumstances might we be interested in this level of certainty?
 
 * Mission- or life-critical code
-	* This is increasingly true as we move forward with automation, e.g. self-driving cars, home and building sensor/control systems, etc.
+	* This is increasingly true as we move forward with automation, e.g. 
+		* self-steering vehicles
+		* home and building sensor/control systems
+		* medical and surgical devices
 * You must convince someone else your code is free of bugs
 * Distributed systems
-	* See AWS success with (was it) TLA+?
-* etc.
+	* See AWS success with TLA+
 
-## Approaches
----
+So if tests, in general, only establish correct behavior for the given input cases, how can we go about proving general claims about program correctness over all inputs?
 
 We can consider the various fields that are required to justify claims, and try to learn something from them and apply it to software behavior. E.g.
 
@@ -64,13 +70,11 @@ We can consider the various fields that are required to justify claims, and try 
 * Mathematics
 * Philosophy
 
-I'd like to propose that most software correctness arguments are similar to the scientific method.
+In my experience, most software correctness arguments follow along the lines of the Scientific Method. That is, a hypothesis is put forth, and it stands until it is falsified. In software, this hypothesis is the claim that our program does what is expected. The claim may be partially motivated by a suite of passing tests. And the claim stands until it's falsified by a runtime bug!
 
-We write a program whose behavior we partially understand. We claim in comments or elsewhere that it does what it should. And then we simply wait for our claim to be falsified at runtime by a bug!
+Surely we can do better.. in the exact sciences, we make claims about the natural world, whose inner workings or rules are mostly concealed to us. So we put forth hypotheses, given what evidence or prejudice is at hand, in a state of general ignorance of the system under consideration, and devise experiments that can falsify these hypotheses or any of their consequences.
 
-Surely we can do better.. these computers are deterministic and NOT black boxes. They are designed by humans. All of this smells more like Math than science.
-
-How are claims verified in mathematics? Glad you asked. Mathematical Logic! Is there a correlate for programs?
+Software, however, is fundamentally different. It runs on man-made devices. We know the inner workings of the host system to exquisite detail. Really, the software situation smells more like mathematics than basic science. So how are claims verified in mathematics? Mathematical Logic! Is there a correlate for programs?
 
 ### Floyd-Hoare Triples
 ---
