@@ -235,6 +235,10 @@ our reasoning is
 {P}, {I}, and !C imply {Q}
 ```
 
+Schematically this is like:
+
+![loop schematic](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 The `!C` is there because the loop has ultimately terminated, so the loop condition, `C`, is false, viz. `!C`. (We also have to prove that the loop terminates, but let's not get ahead of ourselves)
 
 > If you are not used to formal logic or invariants, this should feel unituitive. Only after grappling with many examples does this subtle method reveal its strength.
