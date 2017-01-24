@@ -77,9 +77,7 @@ In my experience, most software correctness arguments follow along the lines of 
 
 Surely we can do better.. in the exact sciences, we make claims about the natural world, whose inner workings or rules are mostly concealed to us. So we put forth hypotheses, given what evidence or prejudice is at hand, in a state of general ignorance of the system under consideration, and devise experiments that can falsify these hypotheses or any of their consequences. Like the following
 
-![Science](https://github.com/gilsonm/gilsonm.github.io/blob/master/popper.gif)
-
-*Image from [here](http://www.meteck.org/pseudosci.html)*
+![Science](https://github.com/gilsonm/gilsonm.github.io/blob/master/popper.png)
 
 Software, however, is fundamentally different. It runs on man-made devices. We know the inner workings of the host system to exquisite detail. Really, the software situation smells more like mathematics than basic science. So how are claims verified in mathematics? Mathematical Logic! Is there a correlate for programs?
 
