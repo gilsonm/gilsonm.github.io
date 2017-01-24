@@ -73,7 +73,9 @@ We can consider the various fields that are required to justify claims, and try 
 
 In my experience, most software correctness arguments follow along the lines of the Scientific Method. That is, a hypothesis is put forth, and it stands until it is falsified. In software, this hypothesis is the claim that our program does what is expected. The claim may be partially motivated by a suite of passing tests. And the claim stands until it's falsified by a runtime bug!
 
-Surely we can do better.. in the exact sciences, we make claims about the natural world, whose inner workings or rules are mostly concealed to us. So we put forth hypotheses, given what evidence or prejudice is at hand, in a state of general ignorance of the system under consideration, and devise experiments that can falsify these hypotheses or any of their consequences.
+Surely we can do better.. in the exact sciences, we make claims about the natural world, whose inner workings or rules are mostly concealed to us. So we put forth hypotheses, given what evidence or prejudice is at hand, in a state of general ignorance of the system under consideration, and devise experiments that can falsify these hypotheses or any of their consequences. Like the following
+
+![Science](https://github.com/gilsonm/gilsonm.github.io/blob/master/popper.gif)
 
 Software, however, is fundamentally different. It runs on man-made devices. We know the inner workings of the host system to exquisite detail. Really, the software situation smells more like mathematics than basic science. So how are claims verified in mathematics? Mathematical Logic! Is there a correlate for programs?
 
