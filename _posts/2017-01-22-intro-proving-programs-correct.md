@@ -146,7 +146,7 @@ z = x + y
 
 However, we haven’t arrived at this result by a formal deduction. Instead, we evaluated a program with very strong pre- and post-condition. Which is to say, we evaluated the program on a specific input value and asserted that the result was a specific value.
 
-If we continued to write passing test cases, we would continue to establish Hoare triples over our sub program. However, unless we exhausted the input space, this collection of tests/triples would not guarantee correct behavior over all inputs. There is a problem of induction here that is identical to the problem of induction in Science, see `**Karl Popper (1963). Conjectures and Refutations. p. 128. ISBN 0-06-131376-9**`
+If we continued to write passing test cases, we would continue to establish Hoare triples over our sub program. However, unless we exhausted the input space, this collection of tests/triples would not guarantee correct behavior over all inputs. There is a problem of induction here that is identical to the problem of induction in Science, see [Popper](#References)
 
 If we’re testing a function that takes two ints as input, we really want to establish the Hoare triple
 
@@ -473,5 +473,7 @@ while node.next != null
 
 Great! But what do we do with the list preconditions, `{L}`? One way to handle those would be create `add(T item)` and `remove(T item)` with the statements in `{L}` as postconditions. Also, we could make `Node` private and enforce all `LinkedList` creation and manipulation through its public interface. After establishing the guarantees (postconditions) of the various public methods, you would then prove that any `LinkedList` created and modified through the public API has certain properties, as a result of the public method postconditions. That's for another post! Maybe...
 
-## (#References)
+## References
+
+1. Karl Popper (1963). Conjectures and Refutations. p. 128. ISBN 0-06-131376-9.
 
