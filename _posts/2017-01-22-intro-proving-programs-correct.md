@@ -15,10 +15,12 @@ Michael Gilson *January, 2017*
 
 Say we wanted to return the last item in a **LinkedList**. Easy right?
 
-Let's start with the definition of **LinkedList**. From [Robert Sedgewick and Kevin Wayne. 2011. Algorithms (4th ed.). Addison-Wesley Professional.
-](#references)
+Let's start with the definition of **LinkedList**. 
 
 > A *linked list* is a recursive data structure that is either empty (*null*) or a reference to a *node* having a generic item and a reference to a linked list.
+
+*From* [Robert Sedgewick and Kevin Wayne. 2011. Algorithms (4th ed.). Addison-Wesley Professional.
+](#references)
 
 Now let's suppose you see this implementation of the definition in a code review
 
