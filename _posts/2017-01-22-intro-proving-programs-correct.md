@@ -112,6 +112,8 @@ Just writing (or reading) an Hoare Triple does not mean it is true! First, the H
 
 Another thing to note is that there is a mixture of languages here. The language of Hoare Logic with statements in `{}`--this is the language you are reasoning *with*--and the targe language, which you are reasoning *about*. Typically, I've seen Hoare Logic expressed as a mixture of the target language and the language of first order logic. Ultimately both languages need formal definitions.
 
+![lang schematic](https://github.com/gilsonm/gilsonm.github.io/raw/master/language.png)
+
 In addition to a formal definition of the language of Hoare Logic, there needs to be a formal definition of the deductive calculus of Hoare Logic. The formulas and rules of the deductive calculus allow us to establish the truth-values of our Hoare Triples.
 
 We can now model our knowledge about the program in a **formal language**, and use a **deductive calculus** to prove theorems about its behavior.
