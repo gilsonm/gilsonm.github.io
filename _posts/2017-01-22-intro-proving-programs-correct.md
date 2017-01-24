@@ -472,3 +472,6 @@ while node.next != null
 ```
 
 Great! But what do we do with the list preconditions, `{L}`? One way to handle those would be create `add(T item)` and `remove(T item)` with the statements in `{L}` as postconditions. Also, we could make `Node` private and enforce all `LinkedList` creation and manipulation through its public interface. After establishing the guarantees (postconditions) of the various public methods, you would then prove that any `LinkedList` created and modified through the public API has certain properties, as a result of the public method postconditions. That's for another post! Maybe...
+
+## (#References)
+
