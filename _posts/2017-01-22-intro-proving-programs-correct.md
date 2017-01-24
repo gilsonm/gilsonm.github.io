@@ -151,7 +151,9 @@ z = x + y
 
 However, we haven’t arrived at this result by a formal deduction. Instead, we evaluated a program with very strong pre- and post-condition. Which is to say, we evaluated the program on a specific input value and asserted that the result was a specific value.
 
-If we continued to write passing test cases, we would continue to establish Hoare triples over our sub program. However, unless we exhausted the input space, this collection of tests/triples would not guarantee correct behavior over all inputs. There is a problem of induction here that is identical to the problem of induction in Science, see [Karl Popper (1963). Conjectures and Refutations. p. 128. ISBN 0-06-131376-9.](#references)
+If we continued to write passing test cases, we would continue to establish Hoare triples over our sub program. However, unless we exhausted the input space, this collection of tests/triples would not guarantee correct behavior over all inputs. There is a problem of induction here that is identical to the problem of induction in Science, see [Karl Popper (1963). Conjectures and Refutations. p. 128. ISBN 0-06-131376-9.](#references). E.g.
+
+![induction schematic](https://github.com/gilsonm/gilsonm.github.io/raw/master/induction.png)
 
 If we’re testing a function that takes two ints as input, we really want to establish the Hoare triple
 
