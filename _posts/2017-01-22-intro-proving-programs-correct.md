@@ -77,6 +77,8 @@ Surely we can do better.. in the exact sciences, we make claims about the natura
 
 ![Science](https://github.com/gilsonm/gilsonm.github.io/blob/master/popper.gif)
 
+*Image from [here](http://www.meteck.org/pseudosci.html)*
+
 Software, however, is fundamentally different. It runs on man-made devices. We know the inner workings of the host system to exquisite detail. Really, the software situation smells more like mathematics than basic science. So how are claims verified in mathematics? Mathematical Logic! Is there a correlate for programs?
 
 ### Floyd-Hoare Triples
