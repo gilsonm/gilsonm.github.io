@@ -15,7 +15,8 @@ Michael Gilson *January, 2017*
 
 Say we wanted to return the last item in a **LinkedList**. Easy right?
 
-Let's start with the definition of **LinkedList**. From *(Sedgewick and Wayne)*
+Let's start with the definition of **LinkedList**. From [Robert Sedgewick and Kevin Wayne. 2011. Algorithms (4th ed.). Addison-Wesley Professional.
+](#references)
 
 > A *linked list* is a recursive data structure that is either empty (*null*) or a reference to a *node* having a generic item and a reference to a linked list.
 
@@ -476,4 +477,5 @@ Great! But what do we do with the list preconditions, `{L}`? One way to handle t
 ## References
 
 1. Karl Popper (1963). Conjectures and Refutations. p. 128. ISBN 0-06-131376-9.
+2. Robert Sedgewick and Kevin Wayne. 2011. Algorithms (4th ed.). Addison-Wesley Professional.
 
