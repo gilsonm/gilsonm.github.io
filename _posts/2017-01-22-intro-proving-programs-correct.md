@@ -83,7 +83,13 @@ Software, however, is fundamentally different. It runs on man-made devices. We k
 
 ### Floyd-Hoare Triples
 
-Mathematical Logic is a tool for pushing truth around. Given some statements we know to be true, we use rules of deduction to find the truth-value of other statements. Such a sequence of deductions is called a proof. Statements for which proofs exist are called theorems. **Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
+Mathematical Logic is a tool for pushing truth around. Given some statements we know to be true, we use rules of deduction to find the truth-value of other statements. Such a sequence of deductions is called a proof. Statements for which proofs exist are called theorems. This process is shown schematically below. 
+
+We desire to prove some statement, `T*`, given some starting material of other truth statements. This starting material is a set of statements that are always true, called **axioms**. And then there are the specific statements that are related to `T*` in some way, they may be definitions of some algebraic struture that `T*` is a claim about, or perhaps they are other **theorems** or **lemmas** that bridge the definitions to the target claim. Finally, we use **rules of deduction** defined in our Formal System, to establish the bridging theorems, the `T_k`s, which ultimately establish the truth of our target statement, `T*`.
+
+![MathLogic](https://github.com/gilsonm/gilsonm.github.io/blob/master/pushing_truth.png)
+
+**Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
 
 Here's the basic idea. Programs are built up from commands. To reason about programs we first need to reason about commands. We'd like to say that executing command `C` has some consequence, call it `Q`. For example if `C = x++`, we may claim that `C` has the effect of `adding 1 to the current value of x`. This effect is the consequence `Q`. However, the current example is only true under certain conditions. What if `x` is not a numeric type, or in general does not have the autoincrement operator defined? To cover the cases we are interested in, it's necessary to state some assertions of what is true before the command executes. So that, all together, we can conclude
 
