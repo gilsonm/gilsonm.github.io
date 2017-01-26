@@ -239,6 +239,10 @@ How do we reason about this fundamental construct? Unlike other statements that 
 
 Does this sound a bit like **Induction**? It is! In arithmetic, when we wish to prove a statement that is true over, say, *all* the natural numbers we do exactly the same thing. In this set-up, `{I}` is referred to as the **Inductive Hypothesis**. We typically establish the truth of `{I}` at some fixed point, e.g. `I(0)`. And then we assume that if `{I}` holds at some arbitrary value `k`, it also holds on the subsequent value `k+1`. Formally, we prove `if I(k) then I(k+1)`. With both `I(0)` and `I(k) -> I(k+1)` proved, we can claim `For all k >= 0, I(k)`. Why? We've shown that `I(0)` is true. Letting `k=0`, we also have `I(0) -> I(1)` by the **Inductive Hypothesis**. So now we've demonstrated the truth of `I(1)`. We can continue this reasoning, indefinitely, to establish the truth of proposition `I` over every possible input `k`.
 
+![math induction](https://github.com/gilsonm/gilsonm.github.io/raw/master/induction_books.png)
+
+(From *Book of Proof* by Richard Hammack, p. 143)
+
 Returning to the while loop, the `{I}` that we establish is true regardless of the number of iterations of the loop. Stated another way,  it is true for *any number of iterations*, which is the generality we seek. In this context, our inductive proposition `{I}` is called an invariant, and this application is credited to the emiment Computer Scientist, [Robert Floyd](https://en.wikipedia.org/wiki/Robert_W._Floyd). Let's mark-up the loop with this **Invariant**. 
 
 ```java
