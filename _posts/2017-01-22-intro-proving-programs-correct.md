@@ -60,9 +60,9 @@ Under what circumstances might we be interested in this level of certainty?
 		* self-steering vehicles
 		* home and building sensor/control systems
 		* medical and surgical devices
-* You must convince someone else your code is free of bugs
 * Distributed systems
-	* See AWS success with TLA+
+	* See [AWS success with TLA+](http://cacm.acm.org/magazines/2015/4/184701-how-amazon-web-services-uses-formal-methods/fulltext)
+* You must convince someone else your code is free of bugs
 
 So if tests, in general, only establish correct behavior for the given input cases, how can we go about proving general claims about program correctness over all inputs?
 
@@ -85,9 +85,9 @@ Software, however, is fundamentally different. It runs on man-made devices. We k
 
 Mathematical Logic is a tool for pushing truth around. Given some statements we know to be true, we use rules of deduction to find the truth-value of other statements. Such a sequence of deductions is called a proof. Statements for which proofs exist are called theorems. This process is shown schematically below. 
 
-We desire to prove some statement, `T*`, given some starting material of other truth statements. This starting material is a set of statements that are always true, called **axioms**. And then there are the specific statements that are related to `T*` in some way, they may be definitions of some algebraic struture that `T*` is a claim about, or perhaps they are other **theorems** or **lemmas** that bridge the definitions to the target claim. Finally, we use **rules of deduction** defined in our Formal System, to establish the bridging theorems, the `T_k`s, which ultimately establish the truth of our target statement, `T*`.
-
 ![MathLogic](https://github.com/gilsonm/gilsonm.github.io/blob/master/pushing_truth.png)
+
+> We desire to prove some statement, `T*`, given some starting material of other truth statements. This starting material is a set of statements that are always true, called **axioms**. And then there are the specific statements that are related to `T*` in some way, they may be definitions of some algebraic struture that `T*` is a claim about, or perhaps they are other **theorems** or **lemmas** that bridge the definitions to the target claim. Finally, we use **rules of deduction** defined in our Formal System, to establish the bridging theorems, the `T_k`s, which ultimately establish the truth of our target statement, `T*`.
 
 **Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
 
