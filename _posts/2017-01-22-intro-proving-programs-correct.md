@@ -89,7 +89,9 @@ Mathematical Logic is a tool for pushing truth around. Given some statements we 
 
 > **Pushing Truth**. We desire to prove some statement, `T*`, given some starting material of other truth statements. This starting material is a set of statements that are always true, called **axioms**. And then there are the specific statements that are related to `T*` in some way, they may be definitions of some algebraic struture that `T*` is a claim about, or perhaps they are other **theorems** or **lemmas** that bridge the definitions to the target claim. Finally, we use **rules of deduction** defined in our Formal System, to establish the bridging theorems, the `T_k`s, which ultimately establish the truth of our target statement, `T*`.
 
-**Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
+**Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare. [Hoare's seminal 1969 paper](#references) begins
+
+> Computer programming is an exact science in that all the properties of a program and all the consequences of executing it in any given environment can, in principle, be found out fro the text of the program itself by means of purely deductive reasoning. *(Hoare 69)*
 
 Here's the basic idea. Programs are built up from commands. To reason about programs we first need to reason about commands. We'd like to say that executing command `C` has some consequence, call it `Q`. For example if `C = x++`, we may claim that `C` has the effect of `adding 1 to the current value of x`. This effect is the consequence `Q`. However, the current example is only true under certain conditions. What if `x` is not a numeric type, or in general does not have the autoincrement operator defined? To cover the cases we are interested in, it's necessary to state some assertions of what is true before the command executes. So that, all together, we can conclude
 
@@ -233,10 +235,11 @@ while (C)
 
 Where `C` is the condition of the `while` loop, and `S` is the body (statements). We desire that given preconditions, `{P}`, the while loop with condition `C` and body of statements `S` guarantees our goal, `{Q}`.
 
-A time-tested method for situations like the present is to use **an Invariant**. This is some property (a predicate), let's call it `{i}` that holds true at the beginning and end of each pass through the body, and together with the termination criteria, will imply `{Q}`. E.g. with a schema like
+A time-tested method for situations like the present is to use **an Invariant**. This is some property (a predicate), let's call it `{I}` that holds true at the beginning and end of each pass through the body, and together with the termination criteria, will imply `{Q}`. E.g. with a schema like
 
 ```java
 {P}
+{I}
 while (C) 
 	{I}
 	S
@@ -492,4 +495,4 @@ Great! But what do we do with the list preconditions, `{L}`? One way to handle t
 
 1. Karl Popper (1963). Conjectures and Refutations. p. 128. ISBN 0-06-131376-9.
 2. Robert Sedgewick and Kevin Wayne. 2011. Algorithms (4th ed.). Addison-Wesley Professional.
-
+3. Hoare, C. A. R. (October 1969). "An axiomatic basis for computer programming" (PDF). Communications of the ACM. 12 (10): 576–580. doi:10.1145/363235.363259.
