@@ -87,7 +87,7 @@ Mathematical Logic is a tool for pushing truth around. Given some statements we 
 
 ![MathLogic](https://github.com/gilsonm/gilsonm.github.io/blob/master/pushing_truth.png)
 
-> We desire to prove some statement, `T*`, given some starting material of other truth statements. This starting material is a set of statements that are always true, called **axioms**. And then there are the specific statements that are related to `T*` in some way, they may be definitions of some algebraic struture that `T*` is a claim about, or perhaps they are other **theorems** or **lemmas** that bridge the definitions to the target claim. Finally, we use **rules of deduction** defined in our Formal System, to establish the bridging theorems, the `T_k`s, which ultimately establish the truth of our target statement, `T*`.
+> **Pushing Truth**. We desire to prove some statement, `T*`, given some starting material of other truth statements. This starting material is a set of statements that are always true, called **axioms**. And then there are the specific statements that are related to `T*` in some way, they may be definitions of some algebraic struture that `T*` is a claim about, or perhaps they are other **theorems** or **lemmas** that bridge the definitions to the target claim. Finally, we use **rules of deduction** defined in our Formal System, to establish the bridging theorems, the `T_k`s, which ultimately establish the truth of our target statement, `T*`.
 
 **Can this be applied to programs?** The answer is yes, but with some twists. The work presented herein was created by Robert Floyd and Tony Hoare.
 
