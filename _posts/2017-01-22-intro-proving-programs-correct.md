@@ -434,9 +434,25 @@ Last(node,l) iff
 	Q3. node.next == null
 ```
 
-So we have to prove `{Q1, Q2, Q3}`. We can prove `Q1` by adding a similar precondition, say `P4`, like `l[k] = node ^ node.next != null —> node.next in l`. To prove `Q2`, this is actually an invariant of the loop so long as initially `node != null`. Why? `node` is only ever assigned the value `node.next`, which is guaranteed to `!= null` because of `C`.  We may require that `FIRST != null` to establish that. Finally, `Q3` is equivalent to `!C`. 
+So we have to prove `{Q1, Q2, Q3}`. We can prove `Q1` by adding a similar precondition, say `P4`, like `l[k] = node ^ node.next != null —> node.next in l`. To prove `Q2`, this is actually an invariant of the loop so long as initially `node != null`. Why? `node` is only ever assigned the value `node.next`, which is guaranteed to `!= null` because of `C`.  We may require that `FIRST != null` to establish that. Finally, `Q3` is equivalent to `!C`.
 
-Why include `k`? It’s there as a convenience to the proofs and not used in the algorithm itself. We’ll want to establish two addition claims. Since what we’ve done is a partially correct proof. We need to establish **Termination**  and an additional invariant `For all j < k, !Last(l[j])`. 
+**And we've demonstrated that, if the loop terminates, the node variable points to the last node in the list!**
+
+### Some Finer Points on Pointers, Arrays, Immutabiblity and Separation Logic
+
+There are some subtle issues with our reasoning about the pointers. So far, we have been reasoning about the **program state**, which is the **state** or **configuration** that our program is in at some point in its execution. What *exactly* is this state or configuration? It's the set of all variables and their associated values. Mathematically, that can be represented as a function from variables to values.
+
+The problem with pointers (and arrays) is *aliasing*. If two pointers, `p1` and `p2`, reference the same object, `o`, then operations on `o` by deferencing one of the pointers may effect our claims about the other pointer. This is a **side effect**.
+
+What we desire is that our reasoning remain *local*. That is, as we reason about manipulation of one part of the datastructure or array, we can be assured that the remaining components of the datastructure or array are unchanged. When we do not have this guarantee, working the traditional Hoare Logic requires the development and maintainence of conditions that cover the entire structure and all possible aliasing. Which becomes a disaster.
+
+This problem led to the development of **Separation Logic**, which adds a **Heap** to the program state, in addition to the existing function from local variables to values, hereafter called the **Store**. **Separation Logic** is an extension to Hoare Logic that allows *local reasoning* about pointer structures and arrays.
+
+To properly verify our LinkedList traversal algorithm, we need to escalate from **Hoare Logic** to **Separation Logic**. 
+
+### Establishing Termination
+
+We’ll want to establish two addition claims. Since what we’ve done is a partially correct proof. We need to establish **Termination**  and an additional invariant `For all j < k, !Last(l[j])`. 
 
 To establish **Termination**, we can argue as follows
 
