@@ -63,6 +63,9 @@ Under what circumstances might we be interested in this level of certainty?
 * Distributed systems
 	* See [AWS success with TLA+](http://cacm.acm.org/magazines/2015/4/184701-how-amazon-web-services-uses-formal-methods/fulltext)
 * You must convince someone else your code is free of bugs
+* Computer Languages
+	* If you are developing a compiler or part of the language toolchain (all high-level code must pass through these programs, so they must behave in a well-defined way)
+	* If you are writing the standard library or collections library for a language (as the foundations of all programs, these need to be bug-free)
 
 So if tests, in general, only establish correct behavior for the given input cases, how can we go about proving general claims about program correctness over all inputs?
 
