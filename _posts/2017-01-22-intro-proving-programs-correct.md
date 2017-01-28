@@ -442,7 +442,11 @@ So we have to prove `{Q1, Q2, Q3}`. We can prove `Q1` by adding a similar precon
 
 There are some subtle issues with our reasoning about the pointers. So far, we have been reasoning about the **program state**, which is the **state** or **configuration** that our program is in at some point in its execution. What *exactly* is this state or configuration? It's the set of all variables and their associated values. Mathematically, that can be represented as a function from variables to values.
 
-The problem with pointers (and arrays) is *aliasing*. If two pointers, `p1` and `p2`, reference the same object, `o`, then operations on `o` by deferencing one of the pointers may effect our claims about the other pointer. This is a **side effect**.
+The problem with pointers (and arrays) is *aliasing*. If two pointers, `p1` and `p2`, reference the same object, `o`, then operations on `o` by deferencing one of the pointers may effect our claims about the other pointer. This is a **side effect**. Shown schematically for an array below
+
+![array ref aliasing](https://github.com/gilsonm/gilsonm.github.io/raw/master/alias.gif)
+
+Image from http://pages.cs.wisc.edu/~vernon/cs367/notes/4.LINKED-LIST.html
 
 What we desire is that our reasoning remain *local*. That is, as we reason about manipulation of one part of the datastructure or array, we can be assured that the remaining components of the datastructure or array are unchanged. When we do not have this guarantee, working the traditional Hoare Logic requires the development and maintainence of conditions that cover the entire structure and all possible aliasing. Which becomes a disaster.
 
